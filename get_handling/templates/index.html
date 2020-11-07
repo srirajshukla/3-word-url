@@ -1,0 +1,19 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    <title>URL Shortener - Home</title>
+{% endblock %}
+
+{% block maincontent %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+
+            <label>Enter the URL to shorten: </label>
+            <input type="url" name="url" placeholder="www.google.com">
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+{% endblock %}
