@@ -2,7 +2,7 @@ import os
 import random
 from pathlib import Path
 
-data_file = os.path.join(Path(__file__).resolve().parent, 'data\\words.txt')
+data_file = os.path.join(Path(__file__).resolve().parent, 'data', 'words.txt')
 
 with open(data_file, 'r') as f:
     words = f.read().splitlines()
