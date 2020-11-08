@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -27,7 +28,7 @@ def index(request):
                 'long': purified_url,
                 'short': shortform,
             }
-        return render(request, 'success.html', context=context)
+        messages.add_message(request, messages.INFO, '/' + context['short'])
     return render(request, 'index.html', context={'form': form})
 
 

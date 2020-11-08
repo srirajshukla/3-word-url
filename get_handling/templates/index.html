@@ -16,4 +16,13 @@
         </fieldset>
     </form>
 
+    {% for message in messages %}
+        <p>
+            Shortend URL is:
+            <span>
+                {{ message }}
+            </span>
+        </p>
+    {% endfor %}
+
 {% endblock %}
