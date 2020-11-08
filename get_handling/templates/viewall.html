@@ -1,0 +1,24 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    <title>URL Shortener - All the Shortened</title>
+{% endblock %}
+
+{% block maincontent %}
+    <table>
+        <tr>
+            <th>
+                Short Form
+            </th>
+            <th>
+                Long Form
+            </th>
+        </tr>
+        {% for data in alldata %}
+            <tr>
+                <td>{{ data.long_url }}</td>
+                <td>{{ data.shortform }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

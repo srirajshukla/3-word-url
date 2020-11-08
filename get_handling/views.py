@@ -10,12 +10,6 @@ from .models import long_and_short
 
 def index(request):
     form = long_and_short()
-    # if request.method == 'GET':
-    #     alltheentry = ""
-    #     allrecords = long_and_short.objects.all()
-    #     for record in allrecords:
-    #         alltheentry += f'<p>longurl = {record.long_url}  shorturl = {record.shortform}</p>'
-    #     return HttpResponse(alltheentry)
     if request.method == 'POST':
         url = request.POST['url']
         purified_url = api.purifyurl.purifyurl(url)
@@ -44,3 +38,8 @@ def redirecturl(request, shortURL):
         return HttpResponseRedirect(longurl)
     except long_and_short.DoesNotExist:
         return HttpResponse('This Short URL doesn\'t exist.', status=404)
+
+
+def viewall(request):
+    alldata = long_and_short.objects.all()
+    return render(request, 'viewall.html', context={'alldata': alldata})
