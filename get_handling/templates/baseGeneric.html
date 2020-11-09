@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style>
-        .mainclass {
-            margin: 2rem;
-            padding: 4rem;
-            border: 1rem solid black;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+
     {% block title %}
-        <title>URL Shortener</title>
+    <title>URL Shortener</title>
     {% endblock %}
-</head>
-<body>
-<div class="mainclass">
-    {% block maincontent %}
-    {% endblock %}
-</div>
-</body>
+  </head>
+  <body>
+    {% block maincontent %} {% endblock %}
+  </body>
 </html>

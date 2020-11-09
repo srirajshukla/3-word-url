@@ -1,24 +1,21 @@
-{% extends "baseGeneric.html" %}
-
-{% block title %}
-    <title>URL Shortener - All the Shortened</title>
-{% endblock %}
-
-{% block maincontent %}
-    <table>
-        <tr>
-            <th>
-                Short Form
-            </th>
-            <th>
-                Long Form
-            </th>
-        </tr>
+{% extends "baseGeneric.html" %} {% block title %}
+<title>URL Shortener - All the Shortened</title>
+{% endblock %} {% block maincontent %}
+<div class="container">
+  <header style="padding: 100px 2rem">
+    <h1>URLs in Database</h1>
+    <a href="/">Generate a new short URL</a>
+    <br />
+    <div class="table">
+        <span><strong>Long form</strong></span>
+        <span><strong>Short form</strong></span>
         {% for data in alldata %}
-            <tr>
-                <td>{{ data.long_url }}</td>
-                <td>{{ data.shortform }}</td>
-            </tr>
+        <span><a href="/{{ data.long_url }}">{{ data.long_url }}</a></span>
+        <span><a href="/{{ data.shortform }}">/{{ data.shortform }}</a></span>
         {% endfor %}
-    </table>
+    </div>
+    </div>
+</div>
+</header>
+</div>
 {% endblock %}

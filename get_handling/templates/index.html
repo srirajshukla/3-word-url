@@ -5,24 +5,48 @@
 {% endblock %}
 
 {% block maincontent %}
+<header class="hero">
+  <div class="container">
+    <h1>Three Word URL</h1>
+    <p>Make easy to pronounce and share short URLs to share on the go.</p>
 
-    <form method="POST">
+    <div class="url-form">
+      <form method="POST" name="shorten-url">
         {% csrf_token %}
-        <fieldset class="form-group">
-
-            <label>Enter the URL to shorten: </label>
-            <input type="url" name="url" placeholder="www.google.com">
-            <input type="submit" value="Submit">
+        <fieldset>
+          <input
+            class="url-input"
+            autocomplete="off"
+            name="url"
+            type="url"
+            value=""
+            placeholder="https://example.com"
+            required
+          />
+          <input class="url-submit" type="submit" value="Shorten" />
         </fieldset>
-    </form>
+      </form>
 
-    {% for message in messages %}
+      {% if messages %}
+      <div class="short-url">
+        {% for message in messages %}
         <p>
-            Shortend URL is:
-            <span>
-                {{ message }}
-            </span>
+          Generated short url is: <br />
+          <a href="{{ message }}">{{ message }}</a>
         </p>
-    {% endfor %}
-
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</header>
+<section>
+  <div class="container">
+    <h1>About</h1>
+    <p>
+      Sometimes we need to share a URL quickly. While it is easy to generate a short URL via a variety of services, they are not easy to share. 3 Word URL resolves this issue by using easy to pronounce English words which you can share verbally. Check it out!
+    </p>
+    <p><a href="/all">View all generated URLs</a></p>
+  </div>
+</section>
 {% endblock %}
