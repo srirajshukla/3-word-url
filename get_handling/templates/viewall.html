@@ -10,7 +10,7 @@
         <span><strong>Long form</strong></span>
         <span><strong>Short form</strong></span>
         {% for data in alldata %}
-        <span><a href="/{{ data.long_url }}">{{ data.long_url }}</a></span>
+        <span><a href="{{ data.long_url }}">{{ data.long_url }}</a></span>
         <span><a href="/{{ data.shortform }}">/{{ data.shortform }}</a></span>
         {% endfor %}
     </div>
