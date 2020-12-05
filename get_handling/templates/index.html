@@ -13,21 +13,28 @@
     <div class="url-form">
       <form method="POST" name="shorten-url">
         {% csrf_token %}
-        <fieldset>
-          <input
-            class="url-input"
-            autocomplete="off"
-            name="url"
-            type="url"
-            value=""
-            placeholder="https://example.com"
-            required
-          />
-          <input class="url-submit" type="submit" value="Shorten" />
-        </fieldset>
+          <fieldset>
+              <input
+                      class="url-input"
+                      autocomplete="off"
+                      name="url"
+                      type="url"
+                      value=""
+                      placeholder="https://example.com"
+                      required
+              />
+              <select name="duration">
+                  <option value="1">One Hr</option>
+                  <option value="3">Three Hrs</option>
+                  <option value="6">Six Hrs</option>
+                  <option value="24">Twentyfour Hrs</option>
+                  <option value="0">Forever</option>
+              </select>
+              <input class="url-submit" type="submit" value="Shorten"/>
+          </fieldset>
       </form>
 
-      {% if messages %}
+        {% if messages %}
       <div class="short-url">
         {% for message in messages %}
         <p>
