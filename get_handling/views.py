@@ -1,3 +1,4 @@
+import requests
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -13,7 +14,18 @@ def index(request):
     form = long_and_short()
     if request.method == 'POST':
         url = request.POST['url']
-        purified_url = api.purifyurl.purifyurl(url)
+        try:
+            purified_url = api.purifyurl.purifyurl(url)
+        except requests.exceptions.ConnectionError:
+            messages.add_message(request, messages.ERROR,
+                                 "This URL doesnot exist. However we have created the shortform of it for you")
+            purified_url = url
+        except requests.exceptions.HTTPError as msg:
+            messages.add_message(request, messages.ERROR, msg)
+            messages.add_message(request, messages.WARNING,
+                                 "There are some problems with this URL. However we have created the shortform of it for you")
+            purified_url = url
+
         try:
             searchforthis = long_and_short.objects.get(long_url=purified_url)
             context = {
