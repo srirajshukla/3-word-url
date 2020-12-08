@@ -6,24 +6,28 @@
             <h1>URLs in Database</h1>
             <a href="/">Generate a new short URL</a>
             <br/>
-            <div class="table">
-                <span><strong>Long form</strong></span>
-                <span><strong>Short form</strong></span>
-                <span>Created</span>
-                <span>Duration</span>
+            <table class="url-list">
+                <tr style="font-weight: bold">
+                    <th>Long URL</th>
+                    <th>Short URL</th>
+                    <th>Created at</th>
+                    <th>Duration</th>
+                </tr>
                 {% for data in alldata %}
-                    <span><a href="{{ data.long_url }}">{{ data.long_url }}</a></span>
-                    <span><a href="/{{ data.shortform }}">/{{ data.shortform }}</a></span>
-                    <span>{{ data.created }}</span>
-                    <span>
-                        {% if data.duration is '0' %}
-                            Forever
-                        {% else %}
-                            {{ data.duration }} Hrs
-                        {% endif %}
-                    </span>
+                    <tr class="url-box">
+                        <td class="url-box-long"><a href="{{ data.long_url }}">{{ data.long_url }}</a></td>
+                        <td class="url-box-short"><a href="/{{ data.shortform }}">/{{ data.shortform }}</a></td>
+                        <td class="url-box-created">{{ data.created }}</td>
+                        <td class="url-box-duration">
+                            {% if data.duration is '0' %}
+                            +Forever
+                            {% else %}
+                            +{{ data.duration }} Hours
+                            {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
-            </div>
+            </table>
         </header>
     </div>
 {% endblock %}
