@@ -13,45 +13,59 @@
     <div class="url-form">
       <form method="POST" name="shorten-url">
         {% csrf_token %}
-          <fieldset>
-              <input
-                      class="url-input"
-                      autocomplete="off"
-                      name="url"
-                      type="url"
-                      value=""
-                      placeholder="https://example.com"
-                      required
-              />
-              <select name="duration">
-                  <option value="1">One Hr</option>
-                  <option value="3">Three Hrs</option>
-                  <option value="6">Six Hrs</option>
-                  <option value="24">Twentyfour Hrs</option>
-                  <option value="0">Forever</option>
-              </select>
-              <input class="url-submit" type="submit" value="Shorten"/>
-          </fieldset>
+        <fieldset>
+          <input
+            class="url-input"
+            autocomplete="off"
+            name="url"
+            type="url"
+            value=""
+            placeholder="https://example.com"
+            required
+          />
+          <select name="duration">
+            <option value="1">One Hr</option>
+            <option value="3">Three Hrs</option>
+            <option value="6">Six Hrs</option>
+            <option value="24">Twentyfour Hrs</option>
+            <option value="0">Forever</option>
+          </select>
+          <input class="url-submit" type="submit" value="Shorten" />
+        </fieldset>
       </form>
 
-        {% if messages %}
-      <div class="short-url">
-        {% for message in messages %}
-        <p>
-          Generated short url is: <br />
-          <a href="{{ message }}">{{ message }}</a>
-        </p>
-        {% endfor %}
-      </div>
+      {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <p{% if message.tags %} class="message-{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </p>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <p{% if message.tags %} class="message-{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </p>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <p{% if message.tags %} class="message-{{ message.tags }}"{% endif %}>
+                <a href="{{ message }}">{{ message }}</a>    
+            </p>
+            {% endif %}
+            {% endfor %}
+          </div>
+      {% endif %}
     </div>
-    {% endif %}
   </div>
 </header>
 <section>
   <div class="container">
     <h1>About</h1>
     <p>
-      Sometimes we need to share a URL quickly. While it is easy to generate a short URL via a variety of services, they are not easy to share. 3 Word URL resolves this issue by using easy to pronounce English words which you can share verbally. Check it out!
+      Sometimes we need to share a URL quickly. While it is easy to generate a
+      short URL via a variety of services, they are not easy to share. 3 Word
+      URL resolves this issue by using easy to pronounce English words which you
+      can share verbally. Check it out!
     </p>
     <p><a href="/all">View all generated URLs</a></p>
   </div>

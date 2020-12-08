@@ -62,20 +62,27 @@ input[type="url"] {
   outline: none;
   border-radius: 4px;
   padding: 0.5rem 1rem;
-  margin: 0.25rem 0.5rem;
   font-size: 1.5rem;
-  line-height: 1.25;
   width: 100%;
+  height: 40px;
 }
 
 .url-input {
   max-width: 600px;
 }
 
+select {
+  width: 150px;
+  height: 40px;
+  font-size: 1.5rem;
+  outline: none;
+}
+
 .url-submit {
   border: none;
   border-radius: 4px;
   padding: 0.5rem 1rem;
+  margin: 1rem;
   font-size: 1.5rem;
   line-height: 1.25;
   color: #fff;
@@ -86,6 +93,18 @@ input[type="url"] {
 
 .short-url {
   margin-top: 2rem;
+}
+
+.messages {
+  margin-top: 1rem;
+}
+
+.message-error {
+  color: #f00;
+}
+
+.message-warning {
+  color: #ff7800;
 }
 
 section {
