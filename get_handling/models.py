@@ -24,7 +24,10 @@ class long_and_short(models.Model):
     )
 
     created = models.DateTimeField(auto_now_add=True)
-    created.editable = True
+    # Uncomment for testing purposes only
+    # Causes key error while migration because auto_now_add is uneditable by default
+    # created.editable = True
+
 
     def __str__(self):
         return self.long_url
