@@ -32,6 +32,7 @@ def index(request):
             searchforthis = long_and_short.objects.get(long_url=purified_url)
             searchforthis.duration = request.POST['duration']
             searchforthis.created = datetime.datetime.now()
+            searchforthis.save()
             context = {
                 'long': purified_url,
                 'short': searchforthis.shortform,
