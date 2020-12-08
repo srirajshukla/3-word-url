@@ -111,16 +111,39 @@ section {
   padding: 200px 2rem;
 }
 
-.table {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  border-top: 1px solid #000;
-  border-right: 1px solid #000;
+table, th, td {
+  border: 1px solid black;
 }
 
-.table > span {
-  padding: 0.75rem;
-  border-left: 1px solid #000;
-  border-bottom: 1px solid #000;
+.url-list {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  overflow-x: scroll;
+}
+
+th, td {
+  padding: 1rem;
+}
+
+.url-box td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.url-box-long {
+  width: 300px;
+}
+
+.url-box-short {
+  width: 200px;
+}
+
+.url-box-created {
+  width: 160px;
+}
+
+.url-box-duration {
+  width: 100px;
 }
