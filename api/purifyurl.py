@@ -14,11 +14,18 @@ def testurl(url):
         url.raise_for_status()
 
 
-def purifyurl(url):
+def schemareplace(urlobj):
+    if urlobj.scheme == '':
+        urlobj = urlobj._replace(scheme='http')
+    elif urlobj.scheme == 'https':
+        urlobj = urlobj._replace(scheme='http')
+    return urlobj.geturl()
+
+
+def purifyurl(url, performtest=True):
     urlobj = urlparse(url)
-    if testurl(url):
-        if urlobj.scheme == '':
-            urlobj = urlobj._replace(scheme='http')
-        elif urlobj.scheme == 'https':
-            urlobj = urlobj._replace(scheme='http')
-        return urlobj.geturl()
+    if not performtest:
+        return schemareplace(urlobj)
+    else:
+        if testurl(url):
+            return schemareplace(urlobj)

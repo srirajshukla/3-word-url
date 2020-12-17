@@ -21,12 +21,12 @@ def index(request):
         except requests.exceptions.ConnectionError:
             messages.add_message(request, messages.ERROR,
                                  "This URL doesnot exist. However we have created the shortform of it for you")
-            purified_url = url
+            purified_url = api.purifyurl.purifyurl(url, performtest=False)
         except requests.exceptions.HTTPError as msg:
             messages.add_message(request, messages.ERROR, msg)
             messages.add_message(request, messages.WARNING,
                                  "There are some problems with this URL. However we have created the shortform of it for you")
-            purified_url = url
+            purified_url = api.purifyurl.purifyurl(url, performtest=False)
 
         try:
             searchforthis = long_and_short.objects.get(long_url=purified_url)
@@ -57,7 +57,9 @@ def redirecturl(request, shortURL):
         # can't compare offset-naive and offset-aware datetimes
         # to prevent this error, passed the timezone awareness of
         # objs.created to datetime.now
-        if (objs.created + delta) < datetime.datetime.now(objs.created.tzinfo):
+        if objs.duration == '0':
+            pass
+        elif (objs.created + delta) < datetime.datetime.now(objs.created.tzinfo):
             return HttpResponse('The Duration of this website has expired.', status=404)
         longurl = objs.long_url
         return HttpResponseRedirect(longurl)
@@ -66,5 +68,6 @@ def redirecturl(request, shortURL):
 
 
 def viewall(request):
+    # remove_expired()
     alldata = long_and_short.objects.all()
     return render(request, 'viewall.html', context={'alldata': alldata})
