@@ -15,9 +15,7 @@ def testurl(url):
 
 
 def schemareplace(urlobj):
-    if urlobj.scheme == '':
-        urlobj = urlobj._replace(scheme='http')
-    elif urlobj.scheme == 'https':
+    if urlobj.scheme == '' or urlobj.scheme == 'https':
         urlobj = urlobj._replace(scheme='http')
     return urlobj.geturl()
 
