@@ -1,5 +1,5 @@
 import os
-import random
+from random import randint
 from pathlib import Path
 
 data_file = os.path.join(Path(__file__).resolve().parent, 'data', 'words.txt')
@@ -10,9 +10,9 @@ with open(data_file, 'r') as f:
 
 def short(url):
     maxsize = len(words) - 1
-    r1 = random.randint(0, maxsize)
-    r2 = random.randint(0, maxsize)
-    r3 = random.randint(0, maxsize)
+    r1 = randint(0, maxsize)
+    r2 = randint(0, maxsize)
+    r3 = randint(0, maxsize)
 
     w1 = words[r1]
     w2 = words[r2]
